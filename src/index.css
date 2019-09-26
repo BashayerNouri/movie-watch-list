@@ -5,6 +5,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("undraw_movie_night_93wl.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 800px 600px;
+  padding-top: 30px;
+  background-color: #c0c0c0;
+}
+
+.add {
+  padding-right: 10px;
+}
+
+#add {
+  position: relative;
+  left: 370px;
 }
 
 code {

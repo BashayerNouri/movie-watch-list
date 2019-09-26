@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+import MoviesList from "./MoviesList";
+import AddMovie from "./AddMovie";
+
+import { connect } from "react-redux";
+
+// import { Route } from "react-router-dom";
+
+class App extends Component {
+  render() {
+    let watch_list = this.props.movies.filter(movie => movie.status === false);
+    let watched_list = this.props.movies.filter(movie => movie.status === true);
+    return (
+      <div className="App ">
+        <div className="container">
+          <AddMovie />
+          <div className="row">
+            <MoviesList
+              className="col-6 "
+              movielist={watch_list}
+              status="Watched"
+              title="Watchlist"
+            />
+            <MoviesList
+              className="col-6 "
+              movielist={watched_list}
+              status="Unwatch"
+              title="Watched"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
+const mapStateToProps = state => {
+  return {
+    movies: state.movieState.movies
+  };
+};
 
-export default App;
+export default connect(
+  mapStateToProps,
+  null
+)(App);
